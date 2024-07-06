@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState, useRef } from 'react';
 
 const ImageMatchPage: React.FC = () => {
@@ -57,51 +56,48 @@ const ImageMatchPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-screen overflow-hidden">
-      <div className="flex flex-1">
-        <div className="flex flex-col items-center justify-center w-1/2 p-4 border-r border-gray-300">
+    <div className="flex flex-col h-screen overflow-hidden">
+      <div className="flex flex-col sm:flex-row flex-1">
+        <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-r border-gray-300">
           <input
             ref={leftImageInputRef}
             type="file"
             accept="image/*"
             onChange={handleLeftImageChange}
-            className="mb-4 px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer"
+            className="mb-4 px-4 sm:px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
           <div className="w-full h-full max-h-[80vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg">
             {leftImage && (
-              <>
-                <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />
-              </>
+              <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />
             )}
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center w-1/2 p-4">
+        <div className="flex flex-col items-center justify-center sm:w-1/2 p-4">
           <input
             ref={rightImageInputRef}
             type="file"
             accept="image/*"
             onChange={handleRightImageChange}
-            className="mb-4 px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer"
+            className="mb-4 px-4 sm:px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
           <div className="w-full h-full max-h-[80vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg">
             {rightImage && (
-              <>
-                <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />
-              </>
+              <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />
             )}
           </div>
+          
         </div>
       </div>
-      <div className="p-4 text-center">
-        
-        {leftImage && (
-          <button onClick={handleClearLeftImage} className="px-8 py-4 bg-blue-500 text-white rounded-lg mr-4">Clear Left Image</button>
-        )}
-        <button onClick={handleApiCall} className="px-8 py-4 bg-blue-500 text-white rounded-lg mr-4" disabled={!leftImage || !rightImage}>Match Images</button>
-        {rightImage && (
-          <button onClick={handleClearRightImage} className="px-8 py-4 bg-blue-500 text-white rounded-lg">Clear Right Image</button>
-        )}
-      </div>
+      <div className="p-4 text-center flex justify-center space-x-4">
+  {leftImage && (
+    <button onClick={handleClearLeftImage} className="px-4 sm:px-8 py-3 bg-blue-500 text-white rounded-lg">Clear Left Image</button>
+  )}
+  <button onClick={handleApiCall} className={`px-4 sm:px-8 py-3 bg-blue-500 text-white rounded-lg ${!leftImage || !rightImage ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={!leftImage || !rightImage}>Match Images</button>
+  {rightImage && (
+    <button onClick={handleClearRightImage} className="px-4 sm:px-8 py-3 bg-blue-500 text-white rounded-lg">Clear Right Image</button>
+  )}
+</div>
+
     </div>
   );
 };
