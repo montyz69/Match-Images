@@ -1,10 +1,13 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const ImageMatchPage: React.FC = () => {
   const [leftImage, setLeftImage] = useState<File | null>(null);
   const [rightImage, setRightImage] = useState<File | null>(null);
+
+  const leftImageInputRef = useRef<HTMLInputElement>(null);
+  const rightImageInputRef = useRef<HTMLInputElement>(null);
 
   const handleLeftImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -15,6 +18,20 @@ const ImageMatchPage: React.FC = () => {
   const handleRightImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setRightImage(event.target.files[0]);
+    }
+  };
+
+  const handleClearLeftImage = () => {
+    setLeftImage(null);
+    if (leftImageInputRef.current) {
+      leftImageInputRef.current.value = '';
+    }
+  };
+
+  const handleClearRightImage = () => {
+    setRightImage(null);
+    if (rightImageInputRef.current) {
+      rightImageInputRef.current.value = '';
     }
   };
 
@@ -40,23 +57,50 @@ const ImageMatchPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-screen">
+    <div className="flex flex-col w-full h-screen overflow-hidden">
       <div className="flex flex-1">
         <div className="flex flex-col items-center justify-center w-1/2 p-4 border-r border-gray-300">
-          <input type="file" accept="image/*" onChange={handleLeftImageChange} className="mb-4 px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer" />
+          <input
+            ref={leftImageInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleLeftImageChange}
+            className="mb-4 px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer"
+          />
           <div className="w-full h-full max-h-[80vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg">
-            {leftImage && <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />}
+            {leftImage && (
+              <>
+                <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />
+              </>
+            )}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center w-1/2 p-4">
-          <input type="file" accept="image/*" onChange={handleRightImageChange} className="mb-4 px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer" />
+          <input
+            ref={rightImageInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleRightImageChange}
+            className="mb-4 px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer"
+          />
           <div className="w-full h-full max-h-[80vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg">
-            {rightImage && <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />}
+            {rightImage && (
+              <>
+                <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />
+              </>
+            )}
           </div>
         </div>
       </div>
       <div className="p-4 text-center">
-        <button onClick={handleApiCall} className="px-8 py-4 bg-blue-500 text-white rounded-lg">Match Images</button>
+        
+        {leftImage && (
+          <button onClick={handleClearLeftImage} className="px-8 py-4 bg-blue-500 text-white rounded-lg mr-4">Clear Left Image</button>
+        )}
+        <button onClick={handleApiCall} className="px-8 py-4 bg-blue-500 text-white rounded-lg mr-4" disabled={!leftImage || !rightImage}>Match Images</button>
+        {rightImage && (
+          <button onClick={handleClearRightImage} className="px-8 py-4 bg-blue-500 text-white rounded-lg">Clear Right Image</button>
+        )}
       </div>
     </div>
   );
