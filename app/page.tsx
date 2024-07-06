@@ -56,7 +56,7 @@ const ImageMatchPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
+    <div className="flex flex-col h-screen overflow-auto">
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-r border-gray-300">
           <input
