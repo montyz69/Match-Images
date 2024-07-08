@@ -64,9 +64,10 @@ const ImageMatchPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-auto">
+    <div className="flex flex-col h-screen overflow-auto p-4">
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-r border-gray-300">
+          <h3 className='text-3xl m-5'>Reference Image</h3>
           <input
             ref={leftImageInputRef}
             type="file"
@@ -74,13 +75,14 @@ const ImageMatchPage: React.FC = () => {
             onChange={handleLeftImageChange}
             className="mb-4 px-4 sm:px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
-          <div className="w-full h-full max-h-[40vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg">
+          <div className="w-full border-gray-950 h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
             {leftImage && (
               <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />
             )}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4">
+        <h3 className='text-3xl m-5'>Test Image</h3>
           <input
             ref={rightImageInputRef}
             type="file"
@@ -88,7 +90,7 @@ const ImageMatchPage: React.FC = () => {
             onChange={handleRightImageChange}
             className="mb-4 px-4 sm:px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
-          <div className="w-full h-full max-h-[40vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg">
+          <div className="w-full  border-gray-950 h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
             {rightImage && (
               <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />
             )}
@@ -97,9 +99,9 @@ const ImageMatchPage: React.FC = () => {
       </div>
       <div className="p-4 text-center flex flex-col items-center space-y-4">
         {result && (
-          <div className="mb-4 p-4 bg-gray-100 rounded-lg shadow-md w-full text-center">
-            <h1 className="text-3xl mt-5 ">Matching Confidence: {result.matchingConfidence}</h1>
-            <h3 className="text-3xl mt-5 mb-4">Status: {result.status}</h3>
+          <div className="mb-4 p-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-lg shadow-lg w-full text-center h-[150px] flex flex-col justify-center items-center">
+            <h1 className="text-3xl  font-bold">Matching Confidence: {result.matchingConfidence}</h1>
+            <h3 className="text-3xl mt-2">Status: {result.status}</h3>
           </div>
         )}
         <div className="flex space-x-4">
