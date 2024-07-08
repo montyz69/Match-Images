@@ -64,33 +64,33 @@ const ImageMatchPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-auto p-10 ml-32 me-32 ">
+    <div className="flex flex-col h-screen overflow-auto p-4 sm:p-10 mx-4 sm:mx-32">
       <div className="flex flex-col sm:flex-row flex-1">
-        <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-r border-gray-300">
-          <h3 className='text-3xl m-5'>Reference Image</h3>
+        <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-b sm:border-b-0 sm:border-r border-gray-300">
+          <h3 className='text-2xl sm:text-3xl m-5'>Reference Image</h3>
           <input
             ref={leftImageInputRef}
             type="file"
             accept="image/*"
             onChange={handleLeftImageChange}
-            className="mb-4 px-4 sm:px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
+            className="mb-4 px-4 py-3 sm:px-6 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
-          <div className="w-full border-gray-950 h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
+          <div className="w-full h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
             {leftImage && (
               <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />
             )}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4">
-        <h3 className='text-3xl m-5'>Test Image</h3>
+          <h3 className='text-2xl sm:text-3xl m-5'>Test Image</h3>
           <input
             ref={rightImageInputRef}
             type="file"
             accept="image/*"
             onChange={handleRightImageChange}
-            className="mb-4 px-4 sm:px-6 py-3 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
+            className="mb-4 px-4 py-3 sm:px-6 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
-          <div className="w-full  border-gray-950 h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
+          <div className="w-full h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
             {rightImage && (
               <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />
             )}
@@ -100,11 +100,11 @@ const ImageMatchPage: React.FC = () => {
       <div className="p-4 text-center flex flex-col items-center space-y-4">
         {result && (
           <div className="mb-4 p-4 bg-gradient-to-r from-blue-400 to-blue-700 text-white rounded-lg shadow-lg w-full text-center h-[150px] flex flex-col justify-center items-center">
-            <h1 className="text-4xl  font-bold">Matching Confidence: {result.matchingConfidence}</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold">Matching Confidence: {result.matchingConfidence}</h1>
             {/* <h3 className="text-3xl mt-2">Status: {result.status}</h3> */}
           </div>
         )}
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
           {leftImage && (
             <button onClick={handleClearLeftImage} className="px-4 sm:px-8 py-3 bg-red-500 text-white rounded-lg">Clear Left Image</button>
           )}
