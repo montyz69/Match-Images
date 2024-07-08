@@ -64,7 +64,7 @@ const ImageMatchPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-auto p-4">
+    <div className="flex flex-col h-screen overflow-auto p-10 ml-32 me-32 ">
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-r border-gray-300">
           <h3 className='text-3xl m-5'>Reference Image</h3>
@@ -99,18 +99,18 @@ const ImageMatchPage: React.FC = () => {
       </div>
       <div className="p-4 text-center flex flex-col items-center space-y-4">
         {result && (
-          <div className="mb-4 p-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-lg shadow-lg w-full text-center h-[150px] flex flex-col justify-center items-center">
-            <h1 className="text-3xl  font-bold">Matching Confidence: {result.matchingConfidence}</h1>
-            <h3 className="text-3xl mt-2">Status: {result.status}</h3>
+          <div className="mb-4 p-4 bg-gradient-to-r from-blue-400 to-blue-700 text-white rounded-lg shadow-lg w-full text-center h-[150px] flex flex-col justify-center items-center">
+            <h1 className="text-4xl  font-bold">Matching Confidence: {result.matchingConfidence}</h1>
+            {/* <h3 className="text-3xl mt-2">Status: {result.status}</h3> */}
           </div>
         )}
         <div className="flex space-x-4">
           {leftImage && (
-            <button onClick={handleClearLeftImage} className="px-4 sm:px-8 py-3 bg-blue-500 text-white rounded-lg">Clear Left Image</button>
+            <button onClick={handleClearLeftImage} className="px-4 sm:px-8 py-3 bg-red-500 text-white rounded-lg">Clear Left Image</button>
           )}
           <button onClick={handleApiCall} className={`px-4 sm:px-8 py-3 bg-blue-500 text-white rounded-lg ${!leftImage || !rightImage ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={!leftImage || !rightImage}>Match Images</button>
           {rightImage && (
-            <button onClick={handleClearRightImage} className="px-4 sm:px-8 py-3 bg-blue-500 text-white rounded-lg">Clear Right Image</button>
+            <button onClick={handleClearRightImage} className="px-4 sm:px-8 py-3 bg-red-500 text-white rounded-lg">Clear Right Image</button>
           )}
         </div>
       </div>
