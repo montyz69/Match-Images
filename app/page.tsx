@@ -66,7 +66,7 @@ const ImageMatchPage: React.FC = () => {
   return (
     <div className="flex flex-col h-screen overflow-auto p-4 sm:p-10 mx-4 sm:mx-32">
       <div className="flex flex-col sm:flex-row flex-1">
-        <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-b sm:border-b-0 sm:border-r border-gray-300">
+        <div className="flex border-gray-900 flex-col items-center justify-center sm:w-1/2 p-4 border-b sm:border-b-0 sm:border-r border-gray-300">
           <h3 className='text-2xl sm:text-3xl m-5'>Reference Image</h3>
           <input
             ref={leftImageInputRef}
@@ -75,7 +75,7 @@ const ImageMatchPage: React.FC = () => {
             onChange={handleLeftImageChange}
             className="mb-4 px-4 py-3 sm:px-6 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
-          <div className="w-full h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
+          <div className="w-full border-gray-900 h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
             {leftImage && (
               <img src={URL.createObjectURL(leftImage)} alt="Left Image Preview" className="object-contain w-full h-full" />
             )}
@@ -90,7 +90,7 @@ const ImageMatchPage: React.FC = () => {
             onChange={handleRightImageChange}
             className="mb-4 px-4 py-3 sm:px-6 bg-blue-500 text-white rounded-lg cursor-pointer text-sm sm:text-base"
           />
-          <div className="w-full h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
+          <div className="w-full border-gray-900 h-full max-h-[30vh] flex items-center justify-center border border-gray-300 overflow-auto rounded-lg bg-white">
             {rightImage && (
               <img src={URL.createObjectURL(rightImage)} alt="Right Image Preview" className="object-contain w-full h-full" />
             )}
