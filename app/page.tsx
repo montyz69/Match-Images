@@ -33,6 +33,7 @@ const ImageMatchPage: React.FC = () => {
 
   const handleClearLeftImage = () => {
     setLeftImage(null);
+    setResult(null);
     if (leftInputRef.current) {
       leftInputRef.current.value = "";
     }
@@ -40,6 +41,7 @@ const ImageMatchPage: React.FC = () => {
 
   const handleClearRightImage = () => {
     setRightImage(null);
+    setResult(null);
     if (rightInputRef.current) {
       rightInputRef.current.value = "";
     }
@@ -82,13 +84,12 @@ const ImageMatchPage: React.FC = () => {
   return (
     <div className="flex flex-col h-screen overflow-auto">
       <div className="bg-[#3f51b5] h-[64px] w-full">
-        <div className="text-3xl font-bold text-white mt-4 ml-4">izDOX</div>
+        <div className="text-3xl font-bold text-white mt-4 ml-4">AI Platform</div>
       </div>
       <div className="pl-44 mt-5 text-2xl text-bold">
         <strong>
           SIGNATURE MATCHING
         </strong>
-        
       </div>
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-b sm:border-b-0">
@@ -176,12 +177,12 @@ const ImageMatchPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="pl-44 my-4">
+      <div className="static pl-44 my-4">
         <Button
           onClick={handleApiCall}
           variant="contained"
           disabled={!leftImage || !rightImage}
-          className="px-4 py-3 bg-[#3f51b5]"
+          className="px-4 py-3  bg-[#3f51b5]"
         >
           Verify Signature
         </Button>
@@ -192,10 +193,16 @@ const ImageMatchPage: React.FC = () => {
         )}
       </div>
       <div className="pl-44">
-        {result && !loading && (
+        {result && !loading ? (
           <div className="text-black rounded-lg flex flex-col mb-20">
             <h1 className="text-xl font-bold">
               Matching Confidence: {result.matchingConfidence}
+            </h1>
+          </div>
+        ) : (
+          <div className="text-black rounded-lg flex flex-col mb-20">
+            <h1 className="text-xl font-bold">
+              Matching Confidence: 0%
             </h1>
           </div>
         )}
