@@ -16,7 +16,7 @@ const ImageMatchPage: React.FC = () => {
   const rightInputRef = React.useRef<HTMLInputElement | null>(null);
 
   const handleLeftImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (event.target.files && event.target.files.length > 0) {
       setLeftImage(event.target.files[0]);
@@ -24,7 +24,7 @@ const ImageMatchPage: React.FC = () => {
   };
 
   const handleRightImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     if (event.target.files && event.target.files.length > 0) {
       setRightImage(event.target.files[0]);
@@ -61,8 +61,8 @@ const ImageMatchPage: React.FC = () => {
           {
             headers: {
               "Content-Type": "multipart/form-data",
-            }
-          }
+            },
+          },
         );
 
         console.log("API Response:", response.data);
@@ -84,12 +84,12 @@ const ImageMatchPage: React.FC = () => {
   return (
     <div className="flex flex-col h-screen overflow-auto">
       <div className="bg-[#3f51b5] h-[64px] w-full">
-        <div className="text-3xl font-bold text-white mt-4 ml-4">AI Platform</div>
+        <div className="text-3xl font-bold text-white mt-4 ml-4">
+          AI Platform
+        </div>
       </div>
       <div className="pl-44 mt-5 text-2xl text-bold">
-        <strong>
-          SIGNATURE MATCHING
-        </strong>
+        <strong>SIGNATURE MATCHING</strong>
       </div>
       <div className="flex flex-col sm:flex-row flex-1">
         <div className="flex flex-col items-center justify-center sm:w-1/2 p-4 border-b sm:border-b-0">
@@ -196,14 +196,15 @@ const ImageMatchPage: React.FC = () => {
         {result && !loading ? (
           <div className="text-black rounded-lg flex flex-col mb-20">
             <h1 className="text-xl font-bold">
-              Matching Confidence: {result.matchingConfidence}
+              Matching Confidence:{" "}
+              {parseFloat(result.matchingConfidence) >= 70
+                ? `${result.matchingConfidence}`
+                : "Not Matched"}
             </h1>
           </div>
         ) : (
           <div className="text-black rounded-lg flex flex-col mb-20">
-            <h1 className="text-xl font-bold">
-              Matching Confidence: 0%
-            </h1>
+            <h1 className="text-xl font-bold">Matching Confidence: 0%</h1>
           </div>
         )}
       </div>
