@@ -204,7 +204,7 @@ const ImageMatchPage: React.FC = () => {
           </div>
         ) : (
           <div className="text-black rounded-lg flex flex-col mb-20">
-            <h1 className="text-xl font-bold">Matching Confidence: 0%</h1>
+            <h1 className="text-xl font-bold">Matching Results: N/A</h1>
           </div>
         )}
       </div>
