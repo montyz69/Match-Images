@@ -198,8 +198,8 @@ const ImageMatchPage: React.FC = () => {
             <h1 className="text-xl font-bold">
               Matching Confidence:{" "}
               {parseFloat(result.matchingConfidence) >= 44
-                ? `Exact Match`
-                  : "Not Matched"}
+                ? `Match`
+                  : "Not Match"}
             </h1>
           </div>
         ) : (
